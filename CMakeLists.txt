@@ -11,12 +11,12 @@ conan_basic_setup()
 
 find_package(GTest REQUIRED)
 
-if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"))
-  add_compile_options(
-    "-Wextra"
-    "-Wall"
-    "-Werror"
-  )
+if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+  if (CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "MSVC")
+    # using clang with clang-cl front end
+  elseif (CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "GNU")
+    # using clang with regular front end
+  endif()
 endif()
 
 if (MSVC)
