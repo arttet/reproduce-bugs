@@ -1,0 +1,32 @@
+name: Tests
+
+on:
+  push:
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+env:
+  python-version: 3.9
+
+jobs:
+  build:
+    name: Clang 12 x86 64 Debug
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python ${{ env.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.python-version }}
+
+      - name: Install requirements
+        run: python -m pip install --upgrade pip conan
+
+      - name: Build
+        shell: bash
+        run: ./build.sh
