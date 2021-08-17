@@ -40,7 +40,7 @@ class UtilsConan(ConanFile):
         pass
 
     def build_requirements(self):
-        pass
+        self.build_requires("gtest/1.11.0", force_host_context=True)
 
     def build_id(self):
         pass

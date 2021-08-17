@@ -9,6 +9,8 @@ set(CXX_EXTENSIONS OFF)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+find_package(GTest REQUIRED)
+
 if ((CMAKE_CXX_COMPILER_ID STREQUAL "Clang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "GNU"))
   add_compile_options(
     "-Wextra"
