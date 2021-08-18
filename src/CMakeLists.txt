@@ -1,4 +1,4 @@
-project(reproduce-bug)
+project(reproduce-bugs)
 
 add_executable(${PROJECT_NAME})
 

@@ -5,10 +5,10 @@ from conans import ConanFile, CMake
 
 
 class UtilsConan(ConanFile):
-    name = "reproduce-bug"
+    name = "reproduce-bugs"
     version = "0.0.0"
     description = "If you can reproduce a bug, you can fix It"
-    homepage = "https://github.com/arttet/reproduce-bug"
+    homepage = "https://github.com/arttet/reproduce-bugs"
     license = "MIT"
     author = "Artyom Tetyukhin"
     settings = "os", "arch", "compiler", "build_type"
