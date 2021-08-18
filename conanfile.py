@@ -34,7 +34,7 @@ class UtilsConan(ConanFile):
         pass
 
     def requirements(self):
-        pass
+        self.requires("abseil/20210324.2")
 
     def package_id(self):
         pass

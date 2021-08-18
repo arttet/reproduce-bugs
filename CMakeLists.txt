@@ -27,4 +27,6 @@ if (MSVC)
   add_compile_definitions(_SCL_SECURE_NO_WARNINGS)
 endif ()
 
+find_package(absl REQUIRED)
+
 add_subdirectory(src)

@@ -13,8 +13,8 @@ env:
 
 jobs:
   build:
-    name: Clang 12 x86 64 Debug
-    runs-on: ubuntu-latest
+    name: Windows MSVC 2019 x86 64 Debug v142
+    runs-on: windows-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
