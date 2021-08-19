@@ -7,8 +7,14 @@ env:
 
 jobs:
   build:
-    name: Clang 12 x86 64 Debug
-    runs-on: ubuntu-latest
+    name: ${{ matrix.config.name }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - { name: Windows-MSVC-2019-x86-64-Debug-ClangCL }
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -23,4 +29,4 @@ jobs:
 
       - name: Build
         shell: bash
-        run: ./build.sh
+        run: ./${{ matrix.config.name }}.sh
