@@ -2,25 +2,25 @@ name: Tests
 
 on: [push, pull_request]
 
-env:
-  python-version: 3.9
-
 jobs:
   build:
-    name: Clang 12 x86 64 Debug
+    name: Memory Sanitizer Clang 14 x86 64 Debug
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python ${{ env.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ env.python-version }}
-
       - name: Install requirements
-        run: python -m pip install --upgrade pip conan
+        run: |
+          wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | sudo apt-key add -
+          sudo add-apt-repository "deb http://apt.llvm.org/focal/     llvm-toolchain-focal   main"
+          sudo apt-get update
+          sudo apt-get install -y clang-14 lldb-14 lld-14 clangd-14 libc++-14-dev libc++abi-14-dev libunwind-14-dev llvm-14 llvm-14-dev
 
       - name: Build
         shell: bash
         run: ./build.sh
+
+      - name: Run
+        shell: bash
+        run: ./build/bin/reproduce-bugs
