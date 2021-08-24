@@ -9,32 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-  add_compile_options(
-    "-Wall"
-    "-Wextra"
-  )
-
-  add_compile_options(
-    "-Wno-c++98-compat"
-    "-Wno-c++98-compat-pedantic"
-  )
-
-  if (CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "MSVC")
-    # Using clang with clang-cl front end
-  elseif (CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "GNU")
-    # Using clang with regular front end
-    add_compile_options(
-      "-Werror"
-    )
-  endif()
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(
-    "-Wall"
-    "-Wextra"
-    "-Werror"
-  )
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   add_compile_definitions(
     _SCL_SECURE_NO_WARNINGS
   )
@@ -42,8 +17,9 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   add_compile_options(
     "/WX"
     "/W4"
-    "/EHsc"
   )
+else ()
+  message(FATAL_ERROR "Unknown compiler")
 endif()
 
 add_subdirectory(src)
