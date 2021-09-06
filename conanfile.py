@@ -34,7 +34,7 @@ class UtilsConan(ConanFile):
         pass
 
     def requirements(self):
-        pass
+        self.requires("fmt/8.0.1")
 
     def package_id(self):
         pass

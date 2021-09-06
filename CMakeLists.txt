@@ -18,6 +18,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(
     "-Wno-c++98-compat"
     "-Wno-c++98-compat-pedantic"
+    "-Wno-unused-command-line-argument"
   )
 
   if (CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "MSVC")
@@ -28,12 +29,6 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
       "-Werror"
     )
   endif()
-elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(
-    "-Wall"
-    "-Wextra"
-    "-Werror"
-  )
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   add_compile_definitions(
     _SCL_SECURE_NO_WARNINGS
@@ -45,5 +40,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     "/EHsc"
   )
 endif()
+
+find_package(fmt REQUIRED)
 
 add_subdirectory(src)
