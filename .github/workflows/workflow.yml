@@ -1,26 +1,15 @@
 name: Tests
 
-on: [push, pull_request]
-
-env:
-  python-version: 3.9
+on: [push]
 
 jobs:
   build:
-    name: Clang 12 x86 64 Debug
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-10.15, macos-11.0, macos-latest]
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python ${{ env.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ env.python-version }}
-
-      - name: Install requirements
-        run: python -m pip install --upgrade pip conan
-
-      - name: Build
-        shell: bash
-        run: ./build.sh
+      - name: Upgrade Homebrew
+        run: brew update && brew upgrade
