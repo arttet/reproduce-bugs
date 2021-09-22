@@ -9,6 +9,18 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
+find_package(Git)
+if (GIT_FOUND)
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+    RESULT_VARIABLE result
+    OUTPUT_VARIABLE output
+  )
+  string(REGEX REPLACE "\n$" "" output "${output}")
+  include(CMakePrintHelpers)
+  cmake_print_variables(output)
+endif (GIT_FOUND)
+
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(
     "-Wall"

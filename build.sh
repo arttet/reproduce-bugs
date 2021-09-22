@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-# Visual Studio
+# Clang
 conan install . -g cmake -if build -b outdated \
-    -s build_type=Debug -s arch_target=x86_64 -s compiler.cppstd=17 \
-    -s compiler.version=16 -s compiler="Visual Studio" -s compiler.runtime=MTd -s compiler.toolset=v142
+    -s compiler.version=12 -s compiler=clang \
+    -s compiler.libcxx=libstdc++11 -s compiler.runtime=MTd \
+    -e CC=clang -e CXX=clang++ \
+    -e CONAN_CMAKE_GENERATOR=Ninja
 
 conan build . --build-folder build
