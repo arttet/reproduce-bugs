@@ -6,6 +6,18 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+find_package(Git)
+if (GIT_FOUND)
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+    RESULT_VARIABLE result
+    OUTPUT_VARIABLE output
+  )
+  string(REGEX REPLACE "\n$" "" output "${output}")
+  include(CMakePrintHelpers)
+  cmake_print_variables(output)
+endif (GIT_FOUND)
+
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
@@ -13,6 +25,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(
     "-Wall"
     "-Wextra"
+    # "-Werror"
   )
 
   add_compile_options(
@@ -24,9 +37,6 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # Using clang with clang-cl front end
   elseif (CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "GNU")
     # Using clang with regular front end
-    add_compile_options(
-      "-Werror"
-    )
   endif()
 elseif (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   add_compile_options(

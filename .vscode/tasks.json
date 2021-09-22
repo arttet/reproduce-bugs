@@ -11,7 +11,7 @@
                 "command": "C:\\Program Files\\Git\\bin\\bash.exe"
             },
             "args": [
-                "${workspaceFolder}/build.sh",
+                "build.sh",
             ],
             "group": "build",
             "problemMatcher": []
