@@ -1,0 +1,11 @@
+include(default)
+
+[settings]
+build_type=Release
+compiler=clang
+compiler.runtime=MTd
+compiler.version=12
+[env]
+CC=clang
+CONAN_CMAKE_GENERATOR=Ninja
+CXX=clang++
