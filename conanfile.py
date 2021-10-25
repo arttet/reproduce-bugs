@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from conans import ConanFile, CMake
+from conans import ConanFile
+from conan.tools.cmake import CMake
 
 
 class UtilsConan(ConanFile):
@@ -23,7 +24,7 @@ class UtilsConan(ConanFile):
         "fPIC": True,
     }
 
-    generators = "cmake", "cmake_find_package"
+    generators = "CMakeDeps", "CMakeToolchain"
     build_policy = "missing"
 
     def config_options(self):
