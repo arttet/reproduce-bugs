@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-# Clang 12.0.0
-conan install . -g cmake -if build -b outdated \
-    -s compiler.version=12 -s compiler=clang \
-    -s compiler.libcxx=libstdc++11 -s compiler.runtime=MDd \
-    -e CC=clang -e CXX=clang++ \
-    -e CONAN_CMAKE_GENERATOR=Ninja
+set -euo pipefail
 
-conan build . --build-folder build
+conan install . -if build --build outdated \
+    -s build_type=Release -pr .profile/clang_x86_64_mt \
+    -s:b build_type=Release -pr:b .profile/clang_x86_64_mt \
+    -e CONAN_CMAKE_GENERATOR=Ninja \
+    -c tools.cmake.cmaketoolchain:generator=Ninja
+
+conan build . -bf build
