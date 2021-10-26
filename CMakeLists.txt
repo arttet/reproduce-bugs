@@ -18,9 +18,6 @@ if (GIT_FOUND)
   cmake_print_variables(output)
 endif (GIT_FOUND)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
-
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(
     "-Wall"
