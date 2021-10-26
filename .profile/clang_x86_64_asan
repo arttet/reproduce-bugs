@@ -1,0 +1,16 @@
+include(default)
+
+[settings]
+build_type=Release
+arch_target=x86_64
+compiler=clang
+compiler.version=13
+compiler.cppstd=17
+compiler.libcxx=libstdc++11
+compiler.runtime=MT
+
+[env]
+CC="C:/Program Files/LLVM/bin/clang"
+CXX="C:/Program Files/LLVM/bin/clang++"
+CFLAGS=-fsanitize=address
+CXXFLAGS=-fsanitize=address

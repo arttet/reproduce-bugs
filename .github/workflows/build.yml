@@ -13,25 +13,10 @@ jobs:
     strategy:
       matrix:
         config:
-          - name: Windows Clang x86 64 Debug MDd
-            os: windows-latest
-            build_type: Debug
-            profile: clang_x86_64_mdd
-
-          - name: Windows Clang x86 64 Release MD
+          - name: Windows Clang 13 x86 64 Release MT
             os: windows-latest
             build_type: Release
-            profile: clang_x86_64_md
-
-          - name: Windows Clang x86 64 Debug MTd
-            os: windows-latest
-            build_type: Debug
-            profile: clang_x86_64_mtd
-
-          - name: Windows Clang x86 64 Release MT
-            os: windows-latest
-            build_type: Release
-            profile: clang_x86_64_mt
+            profile: clang_x86_64_asan
 
     steps:
       - name: Checkout code

@@ -53,4 +53,7 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   )
 endif()
 
+find_package(fmt REQUIRED)
+find_package(Microsoft.GSL REQUIRED)
+
 add_subdirectory(src)

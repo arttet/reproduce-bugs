@@ -1,4 +1,0 @@
-include(clang)
-
-[settings]
-arch_target=x86_64
