@@ -6,6 +6,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Build types
+include(CMakePrintHelpers)
+
+cmake_print_variables(CMAKE_CONFIGURATION_TYPES)
+cmake_print_variables(CMAKE_BUILD_TYPE)
+cmake_print_variables(BUILD_SHARED_LIBS)
+
 find_package(Git)
 if (GIT_FOUND)
   execute_process(

@@ -13,9 +13,9 @@ jobs:
     strategy:
       matrix:
         config:
-          - name: Windows Clang 13 x86 64 Release MT
+          - name: Windows Clang 13 x86 64 RelWithDebInfo MT
             os: windows-latest
-            build_type: Release
+            build_type: RelWithDebInfo
             profile: clang_x86_64_asan
 
     steps:

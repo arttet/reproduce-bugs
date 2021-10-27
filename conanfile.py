@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain
+from conan.tools.cmake import CMake
 from conans import ConanFile
 
 
@@ -30,13 +30,6 @@ class ReproduceBugsConan(ConanFile):
     def requirements(self):
         self.requires("fmt/8.0.1")
         self.requires("ms-gsl/3.1.0")
-
-    def generate(self):
-        tc = CMakeToolchain(self)
-        tc.generate()
-
-        deps = CMakeDeps(self)
-        deps.generate()
 
     def build(self):
         cmake = CMake(self)

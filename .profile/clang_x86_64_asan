@@ -1,7 +1,7 @@
 include(default)
 
 [settings]
-build_type=Release
+build_type=RelWithDebInfo
 arch_target=x86_64
 compiler=clang
 compiler.version=13
