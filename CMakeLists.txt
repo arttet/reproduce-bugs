@@ -6,9 +6,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-conan_basic_setup()
-
 if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   add_compile_definitions(
     _SCL_SECURE_NO_WARNINGS
