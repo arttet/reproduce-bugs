@@ -9,6 +9,9 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Build types
 include(CMakePrintHelpers)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_INCLUDE_HEADERS_IN_COMPILE_COMMANDS ON)
+
 cmake_print_variables(CMAKE_CONFIGURATION_TYPES)
 cmake_print_variables(CMAKE_BUILD_TYPE)
 cmake_print_variables(BUILD_SHARED_LIBS)
@@ -27,8 +30,6 @@ if (GIT_FOUND)
   include(CMakePrintHelpers)
   cmake_print_variables(output)
 endif (GIT_FOUND)
-
-set(CMAKE_CXX_FLAGS_RELEASE "-MT")
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(

@@ -37,3 +37,10 @@ jobs:
 
       - name: Build
         run: conan build . -bf ${{ env.build-folder }}
+
+      - name: Publish compile_commands.json
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: compile_commands
+          path: ${{ env.build-folder }}/compile_commands.json
