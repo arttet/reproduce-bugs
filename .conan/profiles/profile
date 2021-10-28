@@ -1,14 +1,14 @@
 include(default)
 
 [settings]
-build_type=Debug
+build_type=RelWithDebInfo
 arch_target=x86_64
 compiler.cppstd=17
 
 compiler=msvc
 compiler.version=19.29
-compiler.runtime=dynamic
-compiler.runtime_type=Debug
+compiler.runtime=static
+compiler.runtime_type=Release
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
