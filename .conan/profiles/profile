@@ -1,0 +1,14 @@
+include(default)
+
+[settings]
+build_type=Debug
+arch_target=x86_64
+compiler.cppstd=17
+
+compiler=msvc
+compiler.version=19.29
+compiler.runtime=dynamic
+compiler.runtime_type=Debug
+
+[conf]
+tools.cmake.cmaketoolchain:generator=Ninja

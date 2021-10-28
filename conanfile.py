@@ -24,6 +24,13 @@ class ReproduceBugsConan(ConanFile):
         if self.settings.os == "Windows":
             del self.options.fPIC
 
+    def requirements(self):
+        self.requires("fmt/8.0.1")
+        self.requires("ms-gsl/3.1.0")
+
+    def build_requirements(self):
+        self.build_requires("benchmark/1.6.0")
+
     def build(self):
         cmake = CMake(self)
         cmake.configure()

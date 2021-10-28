@@ -6,17 +6,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-  add_compile_definitions(
-    _SCL_SECURE_NO_WARNINGS
-  )
-
-  add_compile_options(
-    "/WX"
-    "/W4"
-  )
-else ()
-  message(FATAL_ERROR "Unknown compiler")
-endif()
+find_package(benchmark REQUIRED)
+find_package(fmt REQUIRED)
+find_package(Microsoft.GSL REQUIRED)
 
 add_subdirectory(src)
