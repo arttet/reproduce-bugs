@@ -1,4 +1,4 @@
-from conan.tools.cmake import CMake
+from conan.tools.cmake import CMake, CMakeDeps
 from conans import ConanFile
 
 
@@ -30,6 +30,11 @@ class ReproduceBugsConan(ConanFile):
 
     def build_requirements(self):
         self.build_requires("benchmark/1.6.0")
+
+    def generate(self):
+        cmake = CMakeDeps(self)
+        cmake.build_context_activated = ["benchmark"]
+        cmake.generate()
 
     def build(self):
         cmake = CMake(self)
