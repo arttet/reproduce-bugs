@@ -6,7 +6,7 @@ If you can reproduce a bug, you can fix It
 
 ## Issue
 
-https://github.com/conan-io/conan-center-index/issues/23729
+https://github.com/conan-io/conan-center-index/issues/18474
 
 ## Workaround
 
