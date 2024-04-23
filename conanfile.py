@@ -35,7 +35,7 @@ class ReproduceBugsRecipe(ConanFile):
             self.options.rm_safe("fPIC")
 
     def requirements(self):
-        pass
+        self.requires("ffmpeg/6.1")
 
     def build_requirements(self):
         pass

@@ -10,24 +10,27 @@ jobs:
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
     strategy:
+      fail-fast: false
       matrix:
         config:
-          - name: x86_64-pc-windows-gnu debug
+          - name: aarch64-linux-android [windows]
             os: windows-latest
             build_type: Debug
-            profile_host: x86_64-pc-windows-gnu
+            profile_host: aarch64-linux-android
             profile_build: x86_64-pc-windows-gnu
 
-          - name: x86_64-unknown-linux-gnu debug
+          - name: aarch64-linux-android [linux]
             os: ubuntu-latest
             build_type: Debug
-            profile_host: x86_64-unknown-linux-gnu
+            profile_host: aarch64-linux-android
             profile_build: x86_64-unknown-linux-gnu
 
     env:
       PROFILE_HOST: .conan2/profiles/${{ matrix.config.profile_host }}
       PROFILE_BUILD: .conan2/profiles/${{ matrix.config.profile_build }}
       BUILD_TYPE: ${{ matrix.config.build_type }}
+      CONAN_INSTALL_EXTRA_ARGS: --build=missing
+      CONAN_BUILD_EXTRA_ARGS: --build=missing
 
     steps:
       - name: Checkout code
