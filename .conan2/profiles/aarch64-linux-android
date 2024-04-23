@@ -21,6 +21,9 @@ ffmpeg/*:with_libx265=False
 # Workaround: https://github.com/conan-io/conan-center-index/issues/23724
 ffmpeg/*:with_openh264=False
 
+# Workaround: https://github.com/conan-io/conan-center-index/issues/23726
+ffmpeg/*:with_libsvtav1=False
+
 # https://docs.conan.io/2/reference/config_files/global_conf.html
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
