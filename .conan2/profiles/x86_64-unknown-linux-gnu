@@ -6,7 +6,7 @@ os=Linux
 
 compiler=clang
 compiler.version=15
-compiler.cppstd=20
+compiler.cppstd=17
 compiler.libcxx=libstdc++11
 
 [conf]
