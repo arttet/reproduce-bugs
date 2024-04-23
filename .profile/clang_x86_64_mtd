@@ -1,5 +1,0 @@
-include(clang_x86_64)
-include(clang_env)
-
-[settings]
-compiler.runtime=MTd

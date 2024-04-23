@@ -1,0 +1,16 @@
+[settings]
+arch=armv8
+os=Android
+os.api_level=32
+
+compiler=clang
+compiler.version=17
+compiler.libcxx=c++_static
+compiler.cppstd=17
+
+# https://docs.conan.io/2/reference/config_files/global_conf.html
+[conf]
+tools.cmake.cmaketoolchain:generator=Ninja
+
+[tool_requires]
+android-ndk/r26c

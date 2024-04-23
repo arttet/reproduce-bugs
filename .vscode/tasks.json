@@ -4,17 +4,47 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Conan: install",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "deps",
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
             "label": "Conan: build",
             "type": "shell",
-            "command": "bash",
-            "windows": {
-                "command": "C:\\Program Files\\Git\\bin\\bash.exe"
-            },
+            "command": "make",
             "args": [
-                "build.sh",
+                "build",
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Conan: create",
+            "type": "shell",
+            "command": "make",
+            "args": [
+                "install",
             ],
             "group": "build",
             "problemMatcher": []
         }
+        // {
+        //     "label": "Conan: build",
+        //     "type": "shell",
+        //     "command": "bash",
+        //     "windows": {
+        //         "command": "C:\\Program Files\\Git\\bin\\bash.exe"
+        //     },
+        //     "args": [
+        //         "build.sh",
+        //     ],
+        //     "group": "build",
+        //     "problemMatcher": []
+        // }
     ]
 }
