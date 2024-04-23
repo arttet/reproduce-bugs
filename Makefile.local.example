@@ -1,0 +1,2 @@
+PROFILE_HOST = .conan2/profiles/x86_64-pc-windows-gnu
+PROFILE_BUILD = .conan2/profiles/x86_64-pc-windows-gnu

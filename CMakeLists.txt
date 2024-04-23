@@ -1,28 +1,40 @@
-cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.29 FATAL_ERROR)
 
-project(reproduce-bugs VERSION 0.0.0 LANGUAGES CXX)
+project(reproduce-bugs VERSION 0.2.0 LANGUAGES C CXX)
+
+############################################################################################
+
+include(CMakePrintHelpers)
+
+find_package(Git)
+
+if (GIT_FOUND)
+  execute_process(
+    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
+    RESULT_VARIABLE RESULT
+    OUTPUT_VARIABLE GIT_BRANCH
+  )
+
+  string(REGEX REPLACE "\n$" "" GIT_BRANCH "${GIT_BRANCH}")
+  cmake_print_variables(GIT_BRANCH)
+endif (GIT_FOUND)
+
+############################################################################################
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-find_package(Git)
-if (GIT_FOUND)
-  execute_process(
-    COMMAND ${GIT_EXECUTABLE} rev-parse --abbrev-ref HEAD
-    RESULT_VARIABLE result
-    OUTPUT_VARIABLE output
-  )
-  string(REGEX REPLACE "\n$" "" output "${output}")
-  include(CMakePrintHelpers)
-  cmake_print_variables(output)
-endif (GIT_FOUND)
+cmake_print_variables(CMAKE_CXX_FLAGS)
+cmake_print_variables(CMAKE_VERBOSE_MAKEFILE)
+
+############################################################################################
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
   add_compile_options(
     "-Wall"
     "-Wextra"
-    # "-Werror"
+    "-Werror"
   )
 
   add_compile_options(
@@ -53,4 +65,8 @@ elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   )
 endif()
 
+############################################################################################
+
 add_subdirectory(src)
+
+############################################################################################

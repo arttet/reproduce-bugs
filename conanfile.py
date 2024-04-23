@@ -1,40 +1,49 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from conan.tools.cmake import CMake, CMakeDeps, CMakeToolchain
-from conans import ConanFile
+from conan import ConanFile
+from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout, CMakeDeps
 
 
-class ReproduceBugsConan(ConanFile):
+class ReproduceBugsRecipe(ConanFile):
     name = "reproduce-bugs"
-    version = "0.0.0"
+    version = "0.2.0"
+    package_type = "application"
 
     # Optional metadata
     license = "MIT"
     author = "Artyom Tetyukhin"
     url = "https://github.com/arttet/reproduce-bugs"
-    description = "If you can reproduce a bug, you can fix It"
+    description = "If you can reproduce a bug, you can fix it"
     topics = ("cpp", "bugs")
 
     # Binary configuration
-    generators = "CMakeDeps", "CMakeToolchain"
-    build_policy = "missing"
     settings = "os", "compiler", "build_type", "arch"
+
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
+
+    # Sources are located in the same place as this recipe, copy them to the recipe
+    exports_sources = "CMakeLists.txt", "src/*"
 
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
 
-    def generate(self):
-        tc = CMakeToolchain(self)
-        tc.generate()
+    def layout(self):
+        cmake_layout(self)
 
+    def generate(self):
         deps = CMakeDeps(self)
         deps.generate()
+        tc = CMakeToolchain(self)
+        tc.generate()
 
     def build(self):
         cmake = CMake(self)
         cmake.configure()
         cmake.build()
+
+    def package(self):
+        cmake = CMake(self)
+        cmake.install()
